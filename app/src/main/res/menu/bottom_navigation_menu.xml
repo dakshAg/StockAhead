@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/round_home_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/inventoryFragment"
+        android:enabled="true"
+        android:icon="@drawable/round_inventory_24"
+        android:title="Inventory" />
+    <item
+        android:id="@+id/connectionsFragment"
+        android:enabled="true"
+        android:icon="@drawable/round_chat_24"
+        android:title="Connect" />
+    <item
+        android:id="@+id/shipmentTrackFragment"
+        android:enabled="true"
+        android:icon="@drawable/baseline_local_shipping_24"
+        android:title="Track" />
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/round_person_24"
+        android:title="Profile" />
+</menu>

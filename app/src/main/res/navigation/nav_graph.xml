@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="au.edu.unimelb.stockahead.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/connectionsFragment"
+        android:name="au.edu.unimelb.stockahead.connections.ConnectionsFragment"
+        android:label="fragment_connections"
+        tools:layout="@layout/fragment_connections" />
+    <fragment
+        android:id="@+id/inventoryFragment"
+        android:name="au.edu.unimelb.stockahead.inventory.InventoryFragment"
+        android:label="fragment_inventory"
+        tools:layout="@layout/fragment_inventory" />
+    <fragment
+        android:id="@+id/shipmentTrackFragment"
+        android:name="au.edu.unimelb.stockahead.ShipmentTrackFragment"
+        android:label="fragment_shipment_track"
+        tools:layout="@layout/fragment_shipment_track" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="au.edu.unimelb.stockahead.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
