@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter
 class PassShipmentFragment : Fragment() {
     private var _binding: FragmentPassShipmentBinding? = null
     private var shipmentId: Int = 0
-    private lateinit var prevStep: Step
+    private var prevStep: Step? = null
 
     // This property is only valid between onCreateView and
 // onDestroyView.
@@ -44,7 +44,9 @@ class PassShipmentFragment : Fragment() {
 
         binding.btnPass.setOnClickListener {
             pushData()
-            updatePrevious()
+            prevStep?.let {
+                updatePrevious(it)
+            }
         }
     }
 
@@ -53,6 +55,8 @@ class PassShipmentFragment : Fragment() {
         val params = HashMap<String, String>()
         params["shipment_id"] = shipmentId.toString()
         params["transporter_id"] = binding.inputCompanyId.text.toString()
+        params["start_loc"] = binding.inputStartLoc.text.toString()
+        params["end_loc"] = binding.inputEndLoc.text.toString()
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         params["start_time"] = LocalDateTime.now().format(formatter)
@@ -73,7 +77,7 @@ class PassShipmentFragment : Fragment() {
         queue.add(jsonObjectRequest)
     }
 
-    private fun updatePrevious() {
+    private fun updatePrevious(ps: Step) {
         val queue = Volley.newRequestQueue(requireContext())
         val params = HashMap<String, String>()
 
@@ -81,7 +85,7 @@ class PassShipmentFragment : Fragment() {
         params["end_time"] = LocalDateTime.now().format(formatter)
         params["status"] = "COMPLETE"
 
-        val url = "https://dakshag.pythonanywhere.com/step/update_status/${prevStep.id}"
+        val url = "https://dakshag.pythonanywhere.com/step/update_status/${ps.id}"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, JSONObject((params as Map<*, *>?)!!), { response ->
                 Log.d("COMP", response.toString())

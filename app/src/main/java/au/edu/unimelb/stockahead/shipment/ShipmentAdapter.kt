@@ -20,7 +20,7 @@ class ShipmentAdapter(private val listt: List<Shipment>, val navController: NavC
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater =
-            LayoutInflater.from(parent.context).inflate(R.layout.row_inventory, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.row_shipment, parent, false)
         return ViewHolder(inflater)
     }
 

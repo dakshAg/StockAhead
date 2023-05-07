@@ -45,9 +45,8 @@ class ShipmentTrackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         shipment = ShipmentTrackFragmentArgs.fromBundle(requireArguments()).shipment
-        binding.efabPass.setOnClickListener {
-            findNavController().navigate(ShipmentTrackFragmentDirections.passShipment(shipment.id))
-        }
+        getData()
+
     }
 
     private fun getData() {
@@ -58,7 +57,7 @@ class ShipmentTrackFragment : Fragment() {
                 Log.w("Inventory", response.toString())
                 val typeToken = object : TypeToken<List<Step>>() {}.type
                 val inventory = Gson().fromJson<List<Step>>(
-                    response.getJSONArray("shipments").toString(),
+                    response.getJSONArray("inventory").toString(),
                     typeToken
                 )
                 showData(inventory)
@@ -79,6 +78,14 @@ class ShipmentTrackFragment : Fragment() {
     }
 
     private fun showData(inventory: List<Step>) {
+        binding.efabPass.setOnClickListener {
+            findNavController().navigate(
+                ShipmentTrackFragmentDirections.passShipment(
+                    shipment.id,
+                    inventory.lastOrNull()
+                )
+            )
+        }
         val adapter = StepAdapter(inventory, findNavController())
         binding.recyc.layoutManager = LinearLayoutManager(requireContext())
         binding.recyc.adapter = adapter

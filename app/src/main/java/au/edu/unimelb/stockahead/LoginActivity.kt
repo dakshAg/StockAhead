@@ -21,6 +21,11 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        if (PreferenceManager(this).getCompanyID() != 0) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         binding.btnSignin.setOnClickListener {
             if (binding.txtPassword.text.toString() != binding.txtRePassword.text.toString()) {
                 binding.txtRePassword.error = "Passwords don't Match"
@@ -41,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
         val url = "https://dakshag.pythonanywhere.com/company/add"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, JSONObject((params as Map<*, *>?)!!), { response ->
+                PreferenceManager(this@LoginActivity).putCompanyID(response.getInt("id"))
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             },
             { exception ->

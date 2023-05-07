@@ -18,7 +18,7 @@ class PreferenceManager(context: Context) {
     }
 
     fun getCompanyID(): Int {
-        return sharedPref.getInt("company_id", 1)
+        return sharedPref.getInt("company_id", 0)
     }
 
 }

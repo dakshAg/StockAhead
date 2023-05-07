@@ -83,7 +83,8 @@
             android:id="@+id/input_sku"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/baseline_camera_alt_24" />
+            android:drawableRight="@drawable/baseline_camera_alt_24"
+            android:drawableTint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -150,7 +151,8 @@
             android:id="@+id/input_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/baseline_attach_money_24" />
+            android:drawableLeft="@drawable/baseline_attach_money_24"
+            android:drawableTint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

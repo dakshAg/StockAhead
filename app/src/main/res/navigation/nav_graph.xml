@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/inventoryFragment">
     <fragment
         android:id="@+id/homeFragment"
         android:name="au.edu.unimelb.stockahead.HomeFragment"
-        android:label="fragment_home"
+        android:label="StockAhead"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/connectionsFragment"
         android:name="au.edu.unimelb.stockahead.connections.ConnectionsFragment"
-        android:label="fragment_connections"
+        android:label="Connections"
         tools:layout="@layout/fragment_connections" />
     <fragment
         android:id="@+id/inventoryFragment"
         android:name="au.edu.unimelb.stockahead.inventory.InventoryFragment"
-        android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" >
+        android:label="Inventory"
+        tools:layout="@layout/fragment_inventory">
         <action
             android:id="@+id/addInventory"
             app:destination="@id/addInventoryItemFragment" />
@@ -26,8 +26,8 @@
     <fragment
         android:id="@+id/shipmentTrackFragment"
         android:name="au.edu.unimelb.stockahead.shipment.ShipmentTrackFragment"
-        android:label="fragment_shipment_track"
-        tools:layout="@layout/fragment_shipment_track" >
+        android:label="Track Shipments"
+        tools:layout="@layout/fragment_shipment_track">
         <action
             android:id="@+id/passShipment"
             app:destination="@id/passShipmentFragment" />
@@ -38,18 +38,18 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="au.edu.unimelb.stockahead.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/addInventoryItemFragment"
         android:name="au.edu.unimelb.stockahead.inventory.AddInventoryItemFragment"
-        android:label="fragment_add_inventory_item"
+        android:label="Inventory"
         tools:layout="@layout/fragment_add_inventory_item" />
     <fragment
         android:id="@+id/shipmentsFragment"
         android:name="au.edu.unimelb.stockahead.shipment.ShipmentsFragment"
-        android:label="fragment_shipments"
-        tools:layout="@layout/fragment_shipments" >
+        android:label="Shipments"
+        tools:layout="@layout/fragment_shipments">
         <action
             android:id="@+id/track"
             app:destination="@id/shipmentTrackFragment" />
@@ -60,18 +60,19 @@
     <fragment
         android:id="@+id/passShipmentFragment"
         android:name="au.edu.unimelb.stockahead.shipment.PassShipmentFragment"
-        android:label="fragment_pass_shipment"
-        tools:layout="@layout/fragment_pass_shipment" >
+        android:label="Shipments"
+        tools:layout="@layout/fragment_pass_shipment">
         <argument
             android:name="shipment_id"
             app:argType="integer" />
         <argument
             android:name="previous_step"
-            app:argType="au.edu.unimelb.stockahead.shipment.Step" />
+            app:argType="au.edu.unimelb.stockahead.shipment.Step"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/newShipmentFragment"
         android:name="au.edu.unimelb.stockahead.shipment.NewShipmentFragment"
-        android:label="fragment_new_shipment"
+        android:label="Shipments"
         tools:layout="@layout/fragment_new_shipment" />
 </navigation>

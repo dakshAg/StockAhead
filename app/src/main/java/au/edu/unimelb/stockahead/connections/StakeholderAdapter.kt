@@ -37,7 +37,7 @@ class StakeholderAdapter(private val listt: List<Stakeholder>, val navController
         val badgeDrawable = BadgeDrawable.create(holder.itemView.context)
         badgeDrawable.number = current.numNotifications
         badgeDrawable.isVisible = true
-        BadgeUtils.attachBadgeDrawable(badgeDrawable, holder.itemView)
+        //BadgeUtils.attachBadgeDrawable(badgeDrawable, holder.itemView)
     }
 
     override fun getItemCount(): Int {
