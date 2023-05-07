@@ -32,8 +32,8 @@ class StakeholderAdapter(private val listt: List<Stakeholder>, val navController
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = listt[position]
         holder.txtTitle.text = current.name
-        holder.txtMsg1.text = "${current.msg1.sender.name}: ${current.msg1.message}"
-        holder.txtMsg2.text = "${current.msg2.sender.name}: ${current.msg2.message}"
+        holder.txtMsg1.text = "${current.msg1?.sender?.name}: ${current.msg1?.message}"
+        holder.txtMsg2.text = "${current.msg2?.sender?.name}: ${current.msg2?.message}"
         val badgeDrawable = BadgeDrawable.create(holder.itemView.context)
         badgeDrawable.number = current.numNotifications
         badgeDrawable.isVisible = true

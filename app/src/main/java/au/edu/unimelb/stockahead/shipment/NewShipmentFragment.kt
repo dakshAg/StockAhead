@@ -1,30 +1,27 @@
-package au.edu.unimelb.stockahead.inventory
+package au.edu.unimelb.stockahead.shipment
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
 import au.edu.unimelb.stockahead.PreferenceManager
+import au.edu.unimelb.stockahead.R
 import au.edu.unimelb.stockahead.databinding.FragmentAddInventoryItemBinding
+import au.edu.unimelb.stockahead.databinding.FragmentNewShipmentBinding
+import au.edu.unimelb.stockahead.databinding.FragmentPassShipmentBinding
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddInventoryItemFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AddInventoryItemFragment : Fragment() {
-    private var _binding: FragmentAddInventoryItemBinding? = null
-
-    // This property is only valid between onCreateView and
-// onDestroyView.
+class NewShipmentFragment : Fragment() {
+    private var _binding: FragmentNewShipmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -32,14 +29,14 @@ class AddInventoryItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentAddInventoryItemBinding.inflate(inflater, container, false)
+        _binding = FragmentNewShipmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSave.setOnClickListener {
+        binding.btnStart.setOnClickListener {
             pushData()
         }
     }
@@ -47,17 +44,18 @@ class AddInventoryItemFragment : Fragment() {
     private fun pushData() {
         val queue = Volley.newRequestQueue(requireContext())
         val params = HashMap<String, String>()
-        params["product_name"] = binding.inputProductName.text.toString()
-        params["sku"] = binding.inputSku.text.toString()
-        params["description"] = binding.inputDescription.text.toString()
-        params["price"] = binding.inputPrice.text.toString()
-        params["quantity"] = binding.inputQuantity.text.toString()
-        params["company_id"] = PreferenceManager(requireContext()).getCompanyID().toString()
+        params["shipment_name"] = binding.inputShipmentName.editText?.text.toString()
+        params["supplier_id"] = PreferenceManager(requireContext()).getCompanyID().toString()
+        params["customer_id"] = "1"
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        params["start_time"] = LocalDateTime.now().format(formatter)
+        params["status"] = "IN TRANSIT"
 
-        val url = "https://dakshag.pythonanywhere.com/inventory/add"
+        val url = "https://dakshag.pythonanywhere.com/shipment/add"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, url, JSONObject((params as Map<*, *>?)!!), { response ->
-
+                Toast.makeText(requireContext(), "Shipment Added Successfully", Toast.LENGTH_SHORT)
+                    .show()
             },
             { exception ->
                 Log.e("Errr", "That didnt work")
@@ -67,4 +65,6 @@ class AddInventoryItemFragment : Fragment() {
         )
         queue.add(jsonObjectRequest)
     }
+
+
 }

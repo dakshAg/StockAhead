@@ -18,15 +18,60 @@
         android:id="@+id/inventoryFragment"
         android:name="au.edu.unimelb.stockahead.inventory.InventoryFragment"
         android:label="fragment_inventory"
-        tools:layout="@layout/fragment_inventory" />
+        tools:layout="@layout/fragment_inventory" >
+        <action
+            android:id="@+id/addInventory"
+            app:destination="@id/addInventoryItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shipmentTrackFragment"
-        android:name="au.edu.unimelb.stockahead.ShipmentTrackFragment"
+        android:name="au.edu.unimelb.stockahead.shipment.ShipmentTrackFragment"
         android:label="fragment_shipment_track"
-        tools:layout="@layout/fragment_shipment_track" />
+        tools:layout="@layout/fragment_shipment_track" >
+        <action
+            android:id="@+id/passShipment"
+            app:destination="@id/passShipmentFragment" />
+        <argument
+            android:name="shipment"
+            app:argType="au.edu.unimelb.stockahead.shipment.Shipment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="au.edu.unimelb.stockahead.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/addInventoryItemFragment"
+        android:name="au.edu.unimelb.stockahead.inventory.AddInventoryItemFragment"
+        android:label="fragment_add_inventory_item"
+        tools:layout="@layout/fragment_add_inventory_item" />
+    <fragment
+        android:id="@+id/shipmentsFragment"
+        android:name="au.edu.unimelb.stockahead.shipment.ShipmentsFragment"
+        android:label="fragment_shipments"
+        tools:layout="@layout/fragment_shipments" >
+        <action
+            android:id="@+id/track"
+            app:destination="@id/shipmentTrackFragment" />
+        <action
+            android:id="@+id/newShipment"
+            app:destination="@id/newShipmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passShipmentFragment"
+        android:name="au.edu.unimelb.stockahead.shipment.PassShipmentFragment"
+        android:label="fragment_pass_shipment"
+        tools:layout="@layout/fragment_pass_shipment" >
+        <argument
+            android:name="shipment_id"
+            app:argType="integer" />
+        <argument
+            android:name="previous_step"
+            app:argType="au.edu.unimelb.stockahead.shipment.Step" />
+    </fragment>
+    <fragment
+        android:id="@+id/newShipmentFragment"
+        android:name="au.edu.unimelb.stockahead.shipment.NewShipmentFragment"
+        android:label="fragment_new_shipment"
+        tools:layout="@layout/fragment_new_shipment" />
 </navigation>
